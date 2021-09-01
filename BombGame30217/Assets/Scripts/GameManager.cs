@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
-    public bool isGameover = false; 
-    public Text scoreText; 
-    public GameObject gameoverUI; 
+    public bool isGameover = false;
+    public Text scoreText;
+    public GameObject gameoverUI;
     private int score = 0;
-    
+
+
     void Awake()
     {
         if (instance == null)
@@ -23,32 +24,34 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("두 개 이상의 게임 매니저가 존재합니다!");
             Destroy(gameObject);
         }
-
     }
+
     void Update() 
     { 
-        if (isGameover && Input.GetKeyDown(KeyCode.R)) 
+        if (isGameover && Input.GetKeyDown(KeyCode.R))
         { 
-            SceneManager.LoadScene("Desert"); 
+            SceneManager.LoadScene("Desert");
         } 
         if (isGameover && Input.GetKeyDown(KeyCode.Q)) 
         { 
-            Application.Quit(); 
+            Application.Quit();
         } 
     }
+
     public void AddScore(int newScore)
-    { 
+    {
         score += newScore; 
         if (score < 0) 
         { 
             OnPlayerDead(); 
         } 
-        scoreText.text = "Score : " + score; 
+        scoreText.text = "Score : " + score;
     }
-    public void OnPlayerDead() 
+    public void OnPlayerDead()
     { 
-        isGameover = true; 
-        gameoverUI.SetActive(true); 
+        isGameover = true;
+        gameoverUI.SetActive(true);
     }
+
 }
 
